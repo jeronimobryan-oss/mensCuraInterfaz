@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mens Cura - Proyecto</title>
+    <link rel="stylesheet" href="pagPrincipal.css">
+</head>
+
+<body>
+
+<header class="header">
+    <h1>Mens Cura</h1>
+</header>
+
+<div class="main-container">
+    
+    <aside class="left-column">
+
+        <nav class="sidebar">
+            <h3 style="text-align: center; font-size: 0.9rem;">Opciones</h3>
+            <ul>
+                <li>Consulta en linea</li>
+                <li>Reagendar cita</li>
+                <li>Directorio de medicos</li>
+                <li>Mi medicacion</li>
+                <li>Mis recetas</li>
+                <li>Mis progreso</li>
+                <li>Historial medico</li>
+                <li>Diario de animo</li>
+                <li>Tareas terapeuticas</li>
+            </ul>
+        </nav>
+
+        <!-- SLIDER NOTICIAS -->
+        <div class="widgets-section">
+        <div class="news-widget-sidebar">
+            <div class="news-label">Novedades de psicologia</div>
+
+            <div class="news-slider">
+                <div class="slides" id="news-container"></div>
+            </div>
+
+            <div class="news-dots">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        </div>
+    </aside>
+
+    <main class="content">
+        <h1>Información del Proyecto - Mens Cura</h1>
+        <p>Semestre IV - Enero-Junio 2026</p>
+        <p>Bienvenido al portal de salud mental.</p>
+
+        <!-- Geolocalizacion -->
+        <button id="find-me">
+            Encontrar mi ubicacion
+        </button>
+
+        <p id="status"></p>
+    </main>
+
+    <div class="map-container">
+        <iframe 
+            id="google-map"
+            src="https://www.google.com/maps?q=psiquiatra+psicologo+in+Ensenada&output=embed"
+            loading="lazy">
+        </iframe>
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

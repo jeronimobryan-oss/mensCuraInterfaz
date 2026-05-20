@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mens Cura - Crear Cuenta</title>
+    <link rel="stylesheet" href="crearCuenta.css">
+</head>
+<body>
+
+    <div class="formulario">
+        <img src="isologo.png" alt="Logo de mens cura" class="logo-placeholder">
+        
+        <form method="post" action="#">    
+            <div class="input-group">
+                <input type="text" id="regName" required>
+                <label>Nombre completo</label>
+            </div>
+
+            <div class="input-group">
+                <input type="email" id="regEmail" required>
+                <label>Correo electrónico</label>
+            </div>
+
+            <div class="input-group">
+                <input type="password" id="regPass" required>
+                <label>Contraseña</label>
+            </div>
+
+            <div class="input-group">
+                <input type="password" id="confirmPass" required>
+                <label>Confirmar contraseña</label>
+            </div>
+            <div class="links-container" style="justify-content: center; display: flex;">
+                <div class="link-pill">
+                    <a href="../Inicio%20de%20Sesion/index.html">¿Ya tienes cuenta? Inicia sesión</a>
+                </div>
+            </div>
+
+            <div class="button-container">
+                <button type="submit" class="btn-iniciar">
+                    Registrarse
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <script src="crearCuenta.js"></script>
+</body>
+</html>

@@ -2,76 +2,258 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Mens Cura - Proyecto</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Mens Cura – Panel de salud mental. Gestiona tus citas, medicación, diario de ánimo y progreso terapéutico.">
+    <title>Mens Cura – Panel Principal</title>
+
+    <!-- Fuentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- CSS principal -->
     <link rel="stylesheet" href="pagPrincipal.css">
 </head>
 
 <body>
 
-<header class="header">
-    <h1>Mens Cura</h1>
+<!-- ═══════════════════════════════════════════════
+     SKIP-NAV (Accesibilidad: salto directo al contenido)
+═══════════════════════════════════════════════ -->
+<a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+
+<!-- ═══════════════════════════════════════════════
+     HEADER
+═══════════════════════════════════════════════ -->
+<header class="header" role="banner">
+    <div class="header-left">
+        <span class="brain-icon" aria-hidden="true">🧠</span>
+        <h1>Mens Cura</h1>
+    </div>
+    <nav class="header-actions" aria-label="Acciones de usuario">
+        <button class="icon-btn" id="btn-perfil" title="Mi perfil" aria-label="Abrir perfil de paciente">👤</button>
+        <button class="icon-btn" id="btn-config" title="Configuración y accesibilidad" aria-label="Abrir configuración y accesibilidad">⚙️</button>
+    </nav>
 </header>
 
+<!-- ═══════════════════════════════════════════════
+     LAYOUT PRINCIPAL
+═══════════════════════════════════════════════ -->
 <div class="main-container">
-    
-    <aside class="left-column">
 
-        <nav class="sidebar">
-            <h3 style="text-align: center; font-size: 0.9rem;">Opciones</h3>
-            <ul>
-                <li>Consulta en linea</li>
-                <li>Reagendar cita</li>
-                <li>Directorio de medicos</li>
-                <li>Mi medicacion</li>
-                <li>Mis recetas</li>
-                <li>Mis progreso</li>
-                <li>Historial medico</li>
-                <li>Diario de animo</li>
-                <li>Tareas terapeuticas</li>
-            </ul>
-        </nav>
+    <!-- ─── BARRA LATERAL ─── -->
+    <aside class="sidebar" aria-label="Menú de navegación principal">
 
-        <!-- SLIDER NOTICIAS -->
+        <p class="sidebar-section-label" aria-hidden="true">Atención Médica</p>
+        <button class="sidebar-btn" data-target="consulta" aria-haspopup="dialog">
+            <span class="btn-icon" aria-hidden="true">💬</span>
+            <span>Consulta en línea</span>
+        </button>
+        <button class="sidebar-btn" data-target="reagendar" aria-haspopup="dialog">
+            <span class="btn-icon" aria-hidden="true">📅</span>
+            <span>Reagendar cita</span>
+        </button>
+        <button class="sidebar-btn" data-target="directorio" aria-haspopup="dialog">
+            <span class="btn-icon" aria-hidden="true">📇</span>
+            <span>Directorio médico</span>
+        </button>
+
+        <div class="sidebar-divider" role="separator" aria-hidden="true"></div>
+        <p class="sidebar-section-label" aria-hidden="true">Salud & Medicación</p>
+        <button class="sidebar-btn" data-target="medicacion" aria-haspopup="dialog">
+            <span class="btn-icon" aria-hidden="true">💊</span>
+            <span>Mi medicación</span>
+        </button>
+        <button class="sidebar-btn" data-target="recetas" aria-haspopup="dialog">
+            <span class="btn-icon" aria-hidden="true">📄</span>
+            <span>Mis recetas</span>
+        </button>
+        <button class="sidebar-btn" data-target="historial" aria-haspopup="dialog">
+            <span class="btn-icon" aria-hidden="true">🗂️</span>
+            <span>Historial médico</span>
+        </button>
+
+        <div class="sidebar-divider" role="separator" aria-hidden="true"></div>
+        <p class="sidebar-section-label" aria-hidden="true">Bienestar Personal</p>
+        <button class="sidebar-btn" data-target="progreso" aria-haspopup="dialog">
+            <span class="btn-icon" aria-hidden="true">📈</span>
+            <span>Mi progreso</span>
+        </button>
+        <button class="sidebar-btn" data-target="diario" aria-haspopup="dialog">
+            <span class="btn-icon" aria-hidden="true">📓</span>
+            <span>Diario de ánimo</span>
+        </button>
+        <button class="sidebar-btn" data-target="tareas" aria-haspopup="dialog">
+            <span class="btn-icon" aria-hidden="true">📋</span>
+            <span>Tareas terapéuticas</span>
+        </button>
+        <button class="sidebar-btn" data-target="recursos" aria-haspopup="dialog">
+            <span class="btn-icon" aria-hidden="true">📚</span>
+            <span>Recursos de apoyo</span>
+        </button>
+        <button class="sidebar-btn" data-target="meditacion" aria-haspopup="dialog">
+            <span class="btn-icon" aria-hidden="true">🧘</span>
+            <span>Meditación guiada</span>
+        </button>
+    </aside>
+
+    <!-- ─── CONTENIDO CENTRAL ─── -->
+    <main class="content" id="main-content" tabindex="-1">
+
+        <!-- Especialistas -->
+        <section class="recommended-card" aria-labelledby="specialists-heading">
+            <h2 class="section-title" id="specialists-heading">Especialistas recomendados para ti</h2>
+            <div class="psychologists-scroll-container" id="psychologists-list" role="list" aria-label="Lista de especialistas disponibles">
+
+                <article class="psychologist-card-item" role="listitem">
+                    <div class="psy-avatar" aria-hidden="true">👩‍⚕️</div>
+                    <div class="psy-details">
+                        <h3 class="psy-name">Dra. Valeria Pérez Ochoa</h3>
+                        <p>Psicología Clínica · Ansiedad y Estrés</p>
+                        <small><span aria-hidden="true">📍</span> Clínica Centro Ensenada &nbsp;·&nbsp; Presencial / Virtual</small>
+                    </div>
+                    <button class="action-btn-psy"
+                        aria-label="Ver perfil de la Dra. Valeria Pérez Ochoa"
+                        onclick="abrirPerfilMedico('Dra. Valeria Pérez Ochoa','Psicología Clínica','646-123-4567','valeria.perez@menscura.com','5 años')">
+                        Ver Perfil
+                    </button>
+                </article>
+
+                <article class="psychologist-card-item" role="listitem">
+                    <div class="psy-avatar" aria-hidden="true">👨‍⚕️</div>
+                    <div class="psy-details">
+                        <h3 class="psy-name">Dr. Alejandro Segovia Sarmiento</h3>
+                        <p>Psiquiatría y Neuropsicología</p>
+                        <small><span aria-hidden="true">📍</span> Av. Universidad, Ensenada &nbsp;·&nbsp; Presencial</small>
+                    </div>
+                    <button class="action-btn-psy"
+                        aria-label="Ver perfil del Dr. Alejandro Segovia Sarmiento"
+                        onclick="abrirPerfilMedico('Dr. Alejandro Segovia Sarmiento','Psiquiatría','646-765-4321','alejandro.segovia@menscura.com','7 años')">
+                        Ver Perfil
+                    </button>
+                </article>
+
+                <article class="psychologist-card-item" role="listitem">
+                    <div class="psy-avatar" aria-hidden="true">👩‍⚕️</div>
+                    <div class="psy-details">
+                        <h3 class="psy-name">Mtra. Elihú Alejandro Ibarra</h3>
+                        <p>Terapia Cognitivo-Conductual · TCC</p>
+                        <small><span aria-hidden="true">📍</span> Sauzal de Rodríguez &nbsp;·&nbsp; Virtual</small>
+                    </div>
+                    <button class="action-btn-psy"
+                        aria-label="Ver perfil de la Mtra. Elihú Alejandro Ibarra"
+                        onclick="abrirPerfilMedico('Mtra. Elihú Alejandro Ibarra','Terapia Cognitivo-Conductual','646-456-7890','elihu.ibarra@menscura.com','4 años')">
+                        Ver Perfil
+                    </button>
+                </article>
+
+                <article class="psychologist-card-item" role="listitem">
+                    <div class="psy-avatar" aria-hidden="true">👨‍⚕️</div>
+                    <div class="psy-details">
+                        <h3 class="psy-name">Dr. Jared Delgado Romero</h3>
+                        <p>Prevención de Conductas de Riesgo</p>
+                        <small><span aria-hidden="true">📍</span> Centro de Salud Mental BC &nbsp;·&nbsp; Presencial / Virtual</small>
+                    </div>
+                    <button class="action-btn-psy"
+                        aria-label="Ver perfil del Dr. Jared Delgado Romero"
+                        onclick="abrirPerfilMedico('Dr. Jared Delgado Romero','Prevención de Conductas de Riesgo','646-321-9876','jared.delgado@menscura.com','6 años')">
+                        Ver Perfil
+                    </button>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- Widgets inferiores -->
         <div class="widgets-section">
-        <div class="news-widget-sidebar">
-            <div class="news-label">Novedades de psicologia</div>
 
-            <div class="news-slider">
-                <div class="slides" id="news-container"></div>
-            </div>
+            <!-- Noticias -->
+            <section class="news-widget-sidebar" aria-labelledby="news-heading">
+                <div class="news-top">
+                    <h2 class="news-label" id="news-heading">Novedades de psicología</h2>
+                    <div class="news-dots" role="tablist" aria-label="Indicadores de noticias">
+                        <span class="dot active" role="tab" aria-selected="true" aria-label="Noticia 1"></span>
+                        <span class="dot" role="tab" aria-selected="false" aria-label="Noticia 2"></span>
+                        <span class="dot" role="tab" aria-selected="false" aria-label="Noticia 3"></span>
+                    </div>
+                </div>
+                <div class="news-slider" aria-live="polite" aria-atomic="true">
+                    <div class="slides" id="news-container" aria-label="Carrusel de noticias"></div>
+                </div>
+            </section>
 
-            <div class="news-dots">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+            <!-- Diario de ánimo rápido -->
+            <section class="mood-quick-widget" aria-labelledby="mood-heading">
+                <div class="mood-bg-deco" aria-hidden="true"></div>
+                <div class="mood-header-info">
+                    <p class="widget-date" id="live-date" aria-live="polite">Cargando fecha...</p>
+                    <h2 class="mood-title" id="mood-heading">
+                        <span id="mood-prompt-text">Escribe sobre una persona que te haga sentir gratitud hoy.</span>
+                    </h2>
+                </div>
+                <div class="widget-actions">
+                    <div style="display:flex; gap:8px;">
+                        <button class="action-circle-btn" id="quick-diary-btn"
+                            aria-label="Abrir diario de ánimo para escribir una entrada"
+                            title="Escribir entrada en el diario">✏️</button>
+                        <button class="action-circle-btn" onclick="rotarFraseMotivacional()"
+                            aria-label="Ver una nueva idea para escribir en el diario"
+                            title="Nueva idea motivacional">🔄</button>
+                    </div>
+                    <span aria-hidden="true" style="font-size:1.8rem; opacity:0.4;">🦋</span>
+                </div>
+            </section>
+
         </div>
+    </main>
+
+    <!-- ─── MAPA ─── -->
+    <aside class="map-container" aria-labelledby="map-heading">
+        <div class="map-header">
+            <span aria-hidden="true">📍</span>
+            <h2 id="map-heading">Cerca de ti</h2>
+        </div>
+        <iframe
+            id="google-map"
+            title="Mapa de psicólogos y psiquiatras cercanos"
+            src="https://maps.google.com/maps?q=psicologos+y+psiquiatras+ensenada&t=&z=13&ie=UTF-8&iwloc=&output=embed"
+            loading="lazy"
+            aria-label="Mapa interactivo de especialistas de salud mental en Ensenada">
+        </iframe>
+        <div class="geo-footer-controls">
+            <button id="find-me" aria-label="Detectar mi ubicación actual para mostrar especialistas cercanos">
+                <span aria-hidden="true">📡</span> Mi ubicación
+            </button>
+            <p id="status" role="status" aria-live="polite"></p>
         </div>
     </aside>
 
-    <main class="content">
-        <h1>Información del Proyecto - Mens Cura</h1>
-        <p>Semestre IV - Enero-Junio 2026</p>
-        <p>Bienvenido al portal de salud mental.</p>
-
-        <!-- Geolocalizacion -->
-        <button id="find-me">
-            Encontrar mi ubicacion
-        </button>
-
-        <p id="status"></p>
-    </main>
-
-    <div class="map-container">
-        <iframe 
-            id="google-map"
-            src="https://www.google.com/maps?q=psiquiatra+psicologo+in+Ensenada&output=embed"
-            loading="lazy">
-        </iframe>
-    </div>
-
 </div>
 
+<!-- ═══════════════════════════════════════════════
+     MODAL / VENTANA EMERGENTE
+═══════════════════════════════════════════════ -->
+<div class="mini-tab-overlay" id="mini-tab"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="mini-tab-title"
+    aria-describedby="mini-tab-body"
+    tabindex="-1">
+    <div class="mini-tab-content">
+        <div class="mini-tab-header">
+            <h2 id="mini-tab-title" class="modal-title">Opción</h2>
+            <button class="close-tab-btn" id="close-tab" aria-label="Cerrar ventana">✕</button>
+        </div>
+        <div class="mini-tab-body" id="mini-tab-body"></div>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     TOAST (anuncio accesible)
+═══════════════════════════════════════════════ -->
+<div id="toast-container" role="status" aria-live="polite" aria-atomic="true"></div>
+
+<!-- JavaScript -->
 <script src="script.js"></script>
+
 </body>
 </html>

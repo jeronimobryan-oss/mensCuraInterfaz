@@ -1,38 +1,15 @@
-/* =====================================================
-   MENS CURA — Script Principal (script.js)
-   Incluye:
-   - Sistema de accesibilidad completo
-   - Modales con contenido enriquecido
-   - Integración API noticias
-   - Geolocalización
-   - Diario de ánimo
-   - Toast notifications
-   - Navegación por teclado
-===================================================== */
-
 "use strict";
-
-// ─────────────────────────────────────────────────
 // REFERENCIAS DOM
-// ─────────────────────────────────────────────────
 const miniTab      = document.getElementById("mini-tab");
 const miniTabTitle = document.getElementById("mini-tab-title");
 const miniTabBody  = document.getElementById("mini-tab-body");
 const closeTabBtn  = document.getElementById("close-tab");
 
-// ─────────────────────────────────────────────────
 // SISTEMA DE ACCESIBILIDAD
-// ─────────────────────────────────────────────────
-
-/**
- * Configuración de accesibilidad guardada en localStorage.
- * Estructura:
- *   { tema, textoGrande, sinAnimaciones, altaContraste }
- */
 const STORAGE_KEY = "menscura_acc";
 
 const acc = {
-    tema:           "normal",   // "normal" | "oscuro" | "alto-contraste" | "daltonismo"
+    tema:           "normal",
     textoGrande:    false,
     sinAnimaciones: false,
     altaContraste:  false,
@@ -85,13 +62,10 @@ if (window.matchMedia("(prefers-color-scheme: dark)").matches && acc.tema === "n
     acc.tema = "oscuro";
 }
 
-// ─────────────────────────────────────────────────
 // PLANTILLAS DE CONTENIDO MODAL
-// ─────────────────────────────────────────────────
-
 const tabTemplates = {
 
-    /* ── CONSULTA EN LÍNEA ── */
+    /*  CONSULTA EN LÍNEA  */
     consulta: `
         <div class="tab-grid-layout">
             <p style="font-size:0.85rem; color:var(--text-mid);">Configura los parámetros de tu sesión clínica de forma asíncrona y segura.</p>
@@ -129,7 +103,7 @@ const tabTemplates = {
             <button class="btn-submit-tab" onclick="cerrarPestana('Abriendo pasarela segura... Conectando con el especialista.')">🚀 Lanzar consulta en línea</button>
         </div>`,
 
-    /* ── REAGENDAR CITA ── */
+    /*REAGENDAR CITA*/
     reagendar: `
         <div class="tab-grid-layout">
             <div class="tab-input-group">
@@ -159,7 +133,7 @@ const tabTemplates = {
             <button class="btn-submit-tab" onclick="cerrarPestana('Solicitud enviada. Recibirás confirmación por correo pronto.')">✅ Confirmar reprogramación</button>
         </div>`,
 
-    /* ── DIRECTORIO MÉDICO ── */
+/*DIRECTIO MÉDICO*/
     directorio: `
         <div class="tab-grid-layout">
             <div style="display:flex; gap:10px;">
@@ -214,7 +188,7 @@ const tabTemplates = {
             </div>
         </div>`,
 
-    /* ── MI MEDICACIÓN ── */
+    /* MI MEDICACIn */
     medicacion: `
         <div class="tab-grid-layout">
             <div class="med-card">
@@ -240,7 +214,7 @@ const tabTemplates = {
             <button class="btn-submit-tab" onclick="cerrarPestana('Registro de adherencia guardado correctamente.')">💊 Actualizar mi medicación</button>
         </div>`,
 
-    /* ── MIS RECETAS ── */
+    /*MIS RECETAS*/
     recetas: `
         <div class="tab-grid-layout">
             <p style="font-size:0.84rem; color:var(--text-mid);">Descarga las recetas autorizadas emitidas por tus médicos asignados.</p>
@@ -263,7 +237,7 @@ const tabTemplates = {
             </div>
         </div>`,
 
-    /* ── HISTORIAL MÉDICO ── */
+    /*HISTORIAL MÉDICO*/
     historial: `
         <div class="tab-grid-layout">
             <div class="modal-info-block">
@@ -286,7 +260,7 @@ const tabTemplates = {
             <button class="btn-submit-tab secondary" onclick="cerrarPestana('Solicitud de copia enviada al correo registrado.')">📋 Solicitar copia certificada</button>
         </div>`,
 
-    /* ── MI PROGRESO ── */
+    /*MI PRGRESO*/
     progreso: `
         <div class="tab-grid-layout">
             <p style="font-size:0.84rem; color:var(--text-mid);">Métricas del periodo actual — Semana del 19 al 25 de mayo, 2026.</p>
@@ -311,7 +285,7 @@ const tabTemplates = {
             </div>
         </div>`,
 
-    /* ── DIARIO DE ÁNIMO ── */
+    /* DIRIO DE ÁNIMO*/
     diario: `
         <div class="tab-grid-layout">
             <div class="tab-input-group">
@@ -343,7 +317,7 @@ const tabTemplates = {
             <button class="btn-submit-tab" onclick="cerrarPestana('Entrada del diario guardada de forma segura.')">📓 Guardar entrada de hoy</button>
         </div>`,
 
-    /* ── TAREAS TERAPÉUTICAS ── */
+    /*TAREAS TERAPÉUTICAS*/
     tareas: `
         <div class="tab-grid-layout">
             <p style="font-size:0.84rem; color:var(--text-mid);">Objetivos fijados por tu terapeuta para la semana en curso:</p>
@@ -364,35 +338,35 @@ const tabTemplates = {
             <button class="btn-submit-tab" onclick="cerrarPestana('Progreso de tareas guardado correctamente.')">✅ Guardar avances</button>
         </div>`,
 
-    /* ── RECURSOS DE APOYO ── */
+    /*RECURSOS DE APOYO*/
     recursos: `
         <div class="tab-grid-layout">
             <p style="font-size:0.84rem; color:var(--text-mid);">Materiales y recursos terapéuticos seleccionados para tu plan de tratamiento:</p>
             <div style="display:flex; flex-direction:column; gap:10px;">
                 <div class="recipe-card">
                     <div>
-                        <strong>📘 Guía de Manejo de Ansiedad</strong><br>
+                        <strong> Guía de Manejo de Ansiedad</strong><br>
                         <small>PDF · 24 páginas · Nivel básico</small>
                     </div>
                     <button class="recipe-download" aria-label="Ver guía de manejo de ansiedad" onclick="mostrarToast('Abriendo recurso...')">Ver</button>
                 </div>
                 <div class="recipe-card">
                     <div>
-                        <strong>🎧 Meditación de Mindfulness (12 min)</strong><br>
+                        <strong> Meditación de Mindfulness (12 min)</strong><br>
                         <small>Audio · Técnica de atención plena</small>
                     </div>
                     <button class="recipe-download" aria-label="Reproducir audio de meditación mindfulness" onclick="mostrarToast('Reproduciendo audio...')">▶ Play</button>
                 </div>
                 <div class="recipe-card">
                     <div>
-                        <strong>📊 Registro de Pensamientos TCC</strong><br>
+                        <strong> Registro de Pensamientos TCC</strong><br>
                         <small>Hoja de trabajo · Terapia Cognitiva</small>
                     </div>
                     <button class="recipe-download" aria-label="Descargar hoja de registro de pensamientos TCC" onclick="mostrarToast('Descargando...')">📥 Bajar</button>
                 </div>
                 <div class="recipe-card">
                     <div>
-                        <strong>📹 Video: Técnicas de grounding</strong><br>
+                        <strong> Video: Técnicas de grounding</strong><br>
                         <small>Video · 8 minutos · Técnica 5-4-3-2-1</small>
                     </div>
                     <button class="recipe-download" aria-label="Ver video de técnicas de grounding" onclick="mostrarToast('Abriendo video...')">▶ Ver</button>
@@ -400,27 +374,27 @@ const tabTemplates = {
             </div>
         </div>`,
 
-    /* ── MEDITACIÓN GUIADA ── */
+    /* MEDITACIÓN*/
     meditacion: `
         <div class="tab-grid-layout">
             <div class="tab-input-group">
                 <label for="m-tipo">Tipo de meditación</label>
                 <select id="m-tipo">
-                    <option>🌬️ Respiración consciente (5 min)</option>
-                    <option>🧘 Mindfulness de atención plena (10 min)</option>
-                    <option>😴 Relajación para dormir (15 min)</option>
-                    <option>💪 Relajación muscular progresiva (12 min)</option>
-                    <option>🌊 Visualización guiada — La playa (8 min)</option>
+                    <option> Respiración consciente (5 min)</option>
+                    <option> Mindfulness de atención plena (10 min)</option>
+                    <option> Relajación para dormir (15 min)</option>
+                    <option> Relajación muscular progresiva (12 min)</option>
+                    <option> Visualización guiada — La playa (8 min)</option>
                 </select>
             </div>
             <div class="tab-input-group">
                 <label for="m-audio">Ambiente sonoro</label>
                 <select id="m-audio">
-                    <option>🌊 Lluvia suave</option>
-                    <option>🎵 Música instrumental</option>
-                    <option>🌿 Naturaleza — bosque</option>
-                    <option>🌊 Olas del mar</option>
-                    <option>🔇 Sin sonido de fondo</option>
+                    <option> Lluvia suave</option>
+                    <option> Música instrumental</option>
+                    <option> Naturaleza — bosque</option>
+                    <option> Olas del mar</option>
+                    <option> Sin sonido de fondo</option>
                 </select>
             </div>
             <div style="background:var(--frost); border-radius:16px; padding:18px; text-align:center;">
@@ -430,7 +404,7 @@ const tabTemplates = {
             <button class="btn-submit-tab" onclick="cerrarPestana('Iniciando sesión de meditación...')">▶ Iniciar meditación</button>
         </div>`,
 
-    /* ── MI PERFIL ── */
+    /*MI PERFIL */
     perfil: `
         <div class="tab-grid-layout">
             <div style="text-align:center; padding:10px 0;">
@@ -449,11 +423,10 @@ const tabTemplates = {
             <button class="btn-submit-tab" onclick="cerrarPestana('Redirigiendo a edición de perfil...')">✏️ Editar perfil</button>
         </div>`,
 
-    /* ── CONFIGURACIÓN Y ACCESIBILIDAD ── */
+    /*CONFIGURACIÓN Y ACCESIBILIDAD */
     config: buildConfigTemplate,
 };
 
-/** Construye el HTML de configuración de forma dinámica para reflejar el estado actual */
 function buildConfigTemplate() {
     return `
     <div class="tab-grid-layout">
@@ -480,7 +453,7 @@ function buildConfigTemplate() {
         </div>
 
         <!-- Sección: Tema de color -->
-        <p class="config-section-title">🎨 Tema de color</p>
+        <p class="config-section-title"> Tema de color</p>
         <div class="acc-grid" role="group" aria-label="Seleccionar tema de color">
             <button class="acc-option-btn ${acc.tema === 'normal' ? 'selected' : ''}"
                 onclick="cambiarTema('normal')" aria-pressed="${acc.tema === 'normal'}">
@@ -501,7 +474,7 @@ function buildConfigTemplate() {
         </div>
 
         <!-- Sección: Tamaño de texto -->
-        <p class="config-section-title">🔤 Tamaño de texto</p>
+        <p class="config-section-title"> Tamaño de texto</p>
         <div style="background:var(--cream); border:1px solid var(--frost); border-radius:16px; padding:14px;">
             <div class="acc-toggle-row" style="border-bottom:none;">
                 <label class="acc-toggle-label" for="tog-texto-grande">
@@ -516,7 +489,7 @@ function buildConfigTemplate() {
         </div>
 
         <!-- Sección: Movimiento -->
-        <p class="config-section-title">✨ Movimiento y animaciones</p>
+        <p class="config-section-title"> Movimiento y animaciones</p>
         <div style="background:var(--cream); border:1px solid var(--frost); border-radius:16px; padding:14px;">
             <div class="acc-toggle-row" style="border-bottom:none;">
                 <label class="acc-toggle-label" for="tog-sin-anim">
@@ -545,9 +518,7 @@ function buildConfigTemplate() {
     </div>`;
 }
 
-// ─────────────────────────────────────────────────
 // FUNCIONES DE ACCESIBILIDAD (llamadas desde el modal)
-// ─────────────────────────────────────────────────
 
 window.cambiarTema = function (nuevoTema) {
     acc.tema = nuevoTema;
@@ -567,11 +538,8 @@ window.toggleAnimaciones = function (activo) {
     aplicarTema();
 };
 
-// ─────────────────────────────────────────────────
 // SISTEMA DE MODALES
-// ─────────────────────────────────────────────────
 
-/** Elemento que tenía el foco antes de abrir el modal (para restaurarlo al cerrar) */
 let focusAntes = null;
 
 function abrirPestana(titulo, llave) {
@@ -668,9 +636,7 @@ window.abrirPerfilMedico = function (nombre, esp, tel, correo, exp) {
         </div>`;
 };
 
-// ─────────────────────────────────────────────────
 // TOAST NOTIFICATIONS
-// ─────────────────────────────────────────────────
 window.mostrarToast = function (mensaje) {
     const container = document.getElementById("toast-container");
     const toast = document.createElement("div");
@@ -683,9 +649,7 @@ window.mostrarToast = function (mensaje) {
     }, 2600);
 };
 
-// ─────────────────────────────────────────────────
 // API DE NOTICIAS DE PSICOLOGÍA
-// ─────────────────────────────────────────────────
 (function cargarNoticias() {
     const API_KEY  = "e35c2f1850b042e0a1e057fd034f1b9b";
     const query    = encodeURIComponent("salud mental OR psicología OR bienestar emocional");
@@ -746,9 +710,7 @@ function cargarRespaldoEstatico() {
     ]);
 }
 
-// ─────────────────────────────────────────────────
 // GEOLOCALIZACIÓN
-// ─────────────────────────────────────────────────
 document.getElementById("find-me").addEventListener("click", () => {
     const status   = document.getElementById("status");
     const mapFrame = document.getElementById("google-map");
@@ -777,9 +739,7 @@ document.getElementById("find-me").addEventListener("click", () => {
     );
 });
 
-// ─────────────────────────────────────────────────
-// DIARIO DE GRATITUD — ROTACIÓN DE IDEAS
-// ─────────────────────────────────────────────────
+// DIARIO MINI
 const ideasDiario = [
     "Escribe sobre una persona que te haga sentir gratitud hoy.",
     "¿Qué pequeño logro alcanzaste esta semana que te genera paz interna?",
@@ -798,16 +758,12 @@ window.rotarFraseMotivacional = function () {
     if (el) el.textContent = ideasDiario[indexIdea];
 };
 
-// ─────────────────────────────────────────────────
-// FECHA EN VIVO
-// ─────────────────────────────────────────────────
+// FECHA
 window.addEventListener("DOMContentLoaded", () => {
     const el = document.getElementById("live-date");
     if (el) {
         const opciones = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
         el.textContent = new Date().toLocaleDateString('es-MX', opciones);
     }
-
-    // Cargar preferencias de accesibilidad guardadas
     cargarPreferencias();
 });

@@ -1,17 +1,8 @@
-/* =====================================================
-   MENS CURA — Estilos Principales
-   Incluye: temas de accesibilidad, modo oscuro,
-   texto grande, alto contraste, daltonismo,
-   diseño responsivo y animaciones reducidas.
-===================================================== */
-
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:wght@400;500&display=swap');
 
-/* ─────────────────────────────────────────────────
-   VARIABLES BASE — Colores originales
-───────────────────────────────────────────────── */
+
 :root {
-    /* Paleta original */
+    /* Paleta  */
     --navy:        #2D3561;
     --slate:       #4B526B;
     --steel:       #899ABE;
@@ -43,10 +34,7 @@
     --map-w:       290px;
 }
 
-/* ─────────────────────────────────────────────────
-   TEMA: ALTO CONTRASTE
-   Activado añadiendo clase 'tema-alto-contraste' en <html>
-───────────────────────────────────────────────── */
+/* ALTO CONTRASTE - Activado añadiendo clase 'tema-alto-contraste' en <html> */
 .tema-alto-contraste {
     --navy:       #000080;
     --slate:      #000000;
@@ -62,10 +50,8 @@
     --focus-ring: 0 0 0 4px #FF0000;
 }
 
-/* ─────────────────────────────────────────────────
-   TEMA: MODO OSCURO
-   Activado con clase 'tema-oscuro' en <html>
-───────────────────────────────────────────────── */
+/*  TEMA: MODO OSCURO Activado con clase 'tema-oscuro' en <html>
+ */
 .tema-oscuro {
     --navy:       #7B8FD4;
     --slate:      #9AA3BB;
@@ -81,10 +67,7 @@
     --focus-ring: 0 0 0 3px #7B8FD4;
 }
 
-/* ─────────────────────────────────────────────────
-   TEMA: DALTONISMO — Deuteranopia / Protanopia
-   Activado con clase 'tema-daltonismo' en <html>
-───────────────────────────────────────────────── */
+/*TEMA: DALTONISMO — Deuteranopia / Protanopia */
 .tema-daltonismo {
     --navy:   #1A4D8F;
     --slate:  #2E5F8E;
@@ -97,10 +80,8 @@
     --text-mid:  #2C4A6E;
 }
 
-/* ─────────────────────────────────────────────────
-   TEXTO GRANDE (aumenta base a 120%)
-   Activado con clase 'texto-grande' en <html>
-───────────────────────────────────────────────── */
+/* TEXTO GRANDE (aumenta base a 120%)
+   Activado con clase 'texto-grande' en <html> */
 .texto-grande {
     --font-size-base: 1.2rem;
 }
@@ -113,10 +94,7 @@
 .texto-grande .tab-input-group select,
 .texto-grande .tab-input-group textarea { font-size: 1.05rem; padding: 14px; }
 
-/* ─────────────────────────────────────────────────
-   ANIMACIONES REDUCIDAS (respeta preferencia del OS
-   o se activa con clase 'sin-animaciones')
-───────────────────────────────────────────────── */
+/* ANIMACIONES REDUCIDAS (respeta preferencia del OS o se activa con clase 'sin-animaciones') */
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
         animation-duration: 0.01ms !important;
@@ -132,9 +110,7 @@
 }
 .sin-animaciones .slides { animation: none !important; }
 
-/* ─────────────────────────────────────────────────
-   RESET & BASE
-───────────────────────────────────────────────── */
+/*  RESET & BASE */
 *, *::before, *::after {
     margin: 0;
     padding: 0;
@@ -164,9 +140,7 @@ body {
     border-radius: 6px;
 }
 
-/* ─────────────────────────────────────────────────
-   SKIP LINK (accesibilidad navegación teclado)
-───────────────────────────────────────────────── */
+/*  SKIP LINK (accesibilidad navegación teclado) */
 .skip-link {
     position: absolute;
     top: -100px;
@@ -185,9 +159,7 @@ body {
     top: 0;
 }
 
-/* ─────────────────────────────────────────────────
-   HEADER
-───────────────────────────────────────────────── */
+/* HEADER */
 .header {
     height: 64px;
     background: var(--navy);
@@ -237,9 +209,7 @@ body {
     background: rgba(255, 255, 255, 0.26);
 }
 
-/* ─────────────────────────────────────────────────
-   LAYOUT PRINCIPAL
-───────────────────────────────────────────────── */
+/* LAYOUT PRINCIPAL */
 .main-container {
     display: flex;
     flex: 1;
@@ -249,9 +219,7 @@ body {
     height: calc(100vh - 64px);
 }
 
-/* ─────────────────────────────────────────────────
-   BARRA LATERAL
-───────────────────────────────────────────────── */
+/* BARRA LATERAL */
 .sidebar {
     width: var(--sidebar-w);
     flex-shrink: 0;
@@ -321,9 +289,7 @@ body {
     margin: 6px 10px;
 }
 
-/* ─────────────────────────────────────────────────
-   CONTENIDO CENTRAL
-───────────────────────────────────────────────── */
+/*  CONTENIDO CENTRAL */
 .content {
     flex: 1;
     display: flex;
@@ -333,9 +299,7 @@ body {
     min-width: 0;
 }
 
-/* ─────────────────────────────────────────────────
-   TARJETA ESPECIALISTAS
-───────────────────────────────────────────────── */
+/*TARJETA ESPECIALISTAS */
 .recommended-card {
     background: var(--white);
     border-radius: var(--radius-card);
@@ -442,9 +406,7 @@ body {
     background: var(--slate);
 }
 
-/* ─────────────────────────────────────────────────
-   SECCIÓN WIDGETS INFERIOR
-───────────────────────────────────────────────── */
+/* SECCIÓN WIDGETS INFERIOR */
 .widgets-section {
     display: flex;
     gap: 18px;
@@ -452,7 +414,7 @@ body {
     flex-shrink: 0;
 }
 
-/* ─── NOTICIAS ─── */
+/*  NOTICIAS */
 .news-widget-sidebar {
     flex: 1.6;
     background: var(--navy);
@@ -553,7 +515,7 @@ body {
     100%     { transform: translateX(0%); }
 }
 
-/* ─── DIARIO / MOOD WIDGET ─── */
+/*  DIARIO WIDGET  */
 .mood-quick-widget {
     flex: 1;
     background: var(--slate);
@@ -622,9 +584,7 @@ body {
     background: rgba(255, 255, 255, 0.22);
 }
 
-/* ─────────────────────────────────────────────────
-   MAPA
-───────────────────────────────────────────────── */
+/*  MAPA */
 .map-container {
     width: var(--map-w);
     flex-shrink: 0;
@@ -702,9 +662,7 @@ body {
     min-height: 1em;
 }
 
-/* ─────────────────────────────────────────────────
-   MODAL OVERLAY
-───────────────────────────────────────────────── */
+/*MODAL OVERLAY */
 .mini-tab-overlay {
     position: fixed;
     inset: 0;
@@ -778,9 +736,7 @@ body {
     background: var(--mist);
 }
 
-/* ─────────────────────────────────────────────────
-   COMPONENTES INTERNOS DEL MODAL
-───────────────────────────────────────────────── */
+/* COMPONENTES INTERNOS DEL MODAL */
 .tab-grid-layout {
     display: flex;
     flex-direction: column;
@@ -959,9 +915,7 @@ body {
     margin: 0 auto 12px;
 }
 
-/* ─────────────────────────────────────────────────
-   SECCIÓN ACCESIBILIDAD EN CONFIGURACIÓN
-───────────────────────────────────────────────── */
+/* SECCIÓN ACCESIBILIDAD EN CONFIGURACIÓN */
 .config-section-title {
     font-size: 0.72rem;
     font-weight: 700;
@@ -1084,9 +1038,7 @@ body {
     box-shadow: var(--focus-ring);
 }
 
-/* ─────────────────────────────────────────────────
-   TOAST / NOTIFICACIÓN
-───────────────────────────────────────────────── */
+/* TOAST / NOTIFICACIÓN */
 #toast-container {
     position: fixed;
     bottom: 28px;
@@ -1113,9 +1065,7 @@ body {
     text-align: center;
 }
 
-/* ─────────────────────────────────────────────────
-   RESPONSIVO — Tablet (≤1024px)
-───────────────────────────────────────────────── */
+/* RESPONSIVO — Tablet (≤1024px) */
 @media (max-width: 1024px) {
     :root {
         --sidebar-w: 60px;
@@ -1134,9 +1084,7 @@ body {
     .news-widget-sidebar { flex: 1.2; }
 }
 
-/* ─────────────────────────────────────────────────
-   RESPONSIVO — Mobile (≤768px)
-───────────────────────────────────────────────── */
+/*RESPONSIVO — Mobile (≤768px) */
 @media (max-width: 768px) {
     body { overflow: auto; height: auto; }
 
@@ -1194,9 +1142,7 @@ body {
     .mini-tab-content { padding: 20px; }
 }
 
-/* ─────────────────────────────────────────────────
-   RESPONSIVO — Mobile pequeño (≤480px)
-───────────────────────────────────────────────── */
+/*RESPONSIVO — Mobile pequeño (≤480px) */
 @media (max-width: 480px) {
     .header { padding: 0 16px; }
     .header-left h1 { font-size: 1.1rem; }

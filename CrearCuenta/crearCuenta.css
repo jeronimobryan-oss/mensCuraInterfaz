@@ -8,7 +8,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh; /* Cambiado a min-height para permitir scroll en pantallas chicas */
+    min-height: 100vh;
 }
 
 .formulario {
@@ -16,11 +16,11 @@ body {
     text-align: center;
     padding: 40px 20px;
     position: relative; 
-    margin-top: 100px; /* Espacio para el logo que flota arriba */
+    margin-top: 100px; /* Ajuste para el logo flotante */
 }
 
 .logo-placeholder {
-    width: 250px; /* Reducido un poco para que sea más armónico con más campos */
+    width: 250px;
     height: auto; 
     position: absolute;
     top: -220px;
@@ -30,6 +30,7 @@ body {
     object-fit: contain;
 }
 
+/* Estilo de los campos de entrada */
 .input-group {
     position: relative;
     margin-bottom: 25px;
@@ -63,7 +64,7 @@ body {
     transition: 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-/* Efecto cuando el input tiene foco o contenido */
+/* Animación del Label: foco o contenido válido */
 .input-group input:focus ~ label,
 .input-group input:valid ~ label {
     top: -12px;
@@ -76,6 +77,7 @@ body {
     z-index: 3;
 }
 
+/* Contenedor de enlaces */
 .links-container {
     display: flex;
     justify-content: center;
@@ -100,6 +102,7 @@ body {
     transform: translateY(-2px);
 }
 
+/* Botón con efecto de destello (glow) incorporado */
 .button-container {
     margin-top: 40px;
 }
@@ -117,6 +120,24 @@ body {
     box-shadow: 0 4px 15px rgba(137, 154, 190, 0.4);
     transition: all 0.4s ease;
     outline: none;
+    position: relative; /* Para que el destello no se salga */
+    overflow: hidden;    /* Oculta el destello fuera del borde */
+}
+
+/* Implementación del efecto de brillo dinámico */
+.btn-iniciar::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.25);
+    transition: 0.5s;
+}
+
+.btn-iniciar:hover::after {
+    left: 100%;
 }
 
 .btn-iniciar:hover {

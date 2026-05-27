@@ -10,22 +10,24 @@
 
     <div class="formulario">
         <img src="isologo.png" alt="Logo de mens cura" class="logo-placeholder">
-        <form method="post" action="#">    
+        
+        <form id="loginForm" method="post" action="#">    
             <div class="input-group">
-                <input type="email" id="loginEmail" required>
+                <input type="email" id="loginEmail" required placeholder=" ">
                 <label>Correo electrónico</label>
-            </div>  
+            </div>
+            
             <div class="input-group">
-                <input type="password" id="loginPass" required>
+                <input type="password" id="loginPass" required placeholder=" ">
                 <label>Contraseña</label>
             </div>
 
             <div class="links-container">
                 <div class="link-pill">
-                <a href="../Olvide.html/miContrasena.html">Olvidé mi contraseña</a>
+                    <a href="../Olvide.html/miContrasena.html">Olvidé mi contraseña</a>
                 </div>
                 <div class="link-pill">
-                    <a href="../CrearCuenta/crear.html">Crear Cuenta</a>
+                    <a href="/CrearCuenta/crear.html">Crear Cuenta</a>
                 </div>
             </div>
 
@@ -36,6 +38,7 @@
             </div>
         </form>
     </div>
+
     <script src="inicio.js"></script>
 </body>
 </html>

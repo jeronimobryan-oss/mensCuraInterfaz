@@ -8,41 +8,46 @@
 </head>
 <body>
 
-    <div class="formulario">
-        <img src="isologo.png" alt="Logo de mens cura" class="logo-placeholder">
-        
-        <form method="post" action="#">    
-            <div class="input-group">
-                <input type="text" id="regName" required>
-                <label>Nombre completo</label>
-            </div>
+    <div class="formulario-container">
+        <div class="formulario">
+            <img src="isologo.png" alt="Logo de mens cura" class="logo-placeholder">
+            
+            <h2>Crear cuenta</h2>
 
-            <div class="input-group">
-                <input type="email" id="regEmail" required>
-                <label>Correo electrónico</label>
-            </div>
-
-            <div class="input-group">
-                <input type="password" id="regPass" required>
-                <label>Contraseña</label>
-            </div>
-
-            <div class="input-group">
-                <input type="password" id="confirmPass" required>
-                <label>Confirmar contraseña</label>
-            </div>
-            <div class="links-container" style="justify-content: center; display: flex;">
-                <div class="link-pill">
-                    <a href="../Inicio%20de%20Sesion/index.html">¿Ya tienes cuenta? Inicia sesión</a>
+            <form id="registroForm" method="post" action="#">    
+                <div class="input-group">
+                    <input type="text" id="regName" required placeholder=" ">
+                    <label for="regName">Nombre completo</label>
                 </div>
-            </div>
 
-            <div class="button-container">
-                <button type="submit" class="btn-iniciar">
-                    Registrarse
-                </button>
-            </div>
-        </form>
+                <div class="input-group">
+                    <input type="email" id="regEmail" required placeholder=" ">
+                    <label for="regEmail">Correo electrónico</label>
+                </div>
+
+                <div class="input-group">
+                    <input type="password" id="regPass" required placeholder=" ">
+                    <label for="regPass">Contraseña</label>
+                </div>
+
+                <div class="input-group">
+                    <input type="password" id="confirmPass" required placeholder=" ">
+                    <label for="confirmPass">Confirmar contraseña</label>
+                </div>
+
+                <div class="links-container">
+                    <div class="link-pill">
+                        <a href="../Inicio%20de%20Sesion/index.html">¿Ya tienes cuenta? Inicia sesión</a>
+                    </div>
+                </div>
+
+                <div class="button-container">
+                    <button type="submit" class="btn-iniciar">
+                        Registrarse
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
 
     <script src="crearCuenta.js"></script>

@@ -79,4 +79,24 @@ document.addEventListener("DOMContentLoaded", () => {
             submitBtn.textContent = isLoading ? "Verificando..." : "Iniciar Sesión";
         }
     }
+    async function iniciarSesion() {
+
+    const correo = document.getElementById("correo").value;
+    const password = document.getElementById("password").value;
+
+    const respuesta = await fetch("http://localhost:8080/pacientes/login", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            correo: correo,
+            password: password
+        })
+    });
+
+    const datos = await respuesta.json();
+
+    console.log(datos);
+}
 });

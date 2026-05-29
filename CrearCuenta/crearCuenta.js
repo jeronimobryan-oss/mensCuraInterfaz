@@ -96,4 +96,26 @@ document.addEventListener("DOMContentLoaded", () => {
         mensaje.textContent = texto;
         mensaje.style.color = color;
     }
+    async function crearCuenta() {
+
+    const nombre = document.getElementById("nombre").value;
+    const correo = document.getElementById("correo").value;
+    const password = document.getElementById("password").value;
+
+    const respuesta = await fetch("http://localhost:8080/pacientes", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            nombre,
+            correo,
+            password
+        })
+    });
+
+    const datos = await respuesta.json();
+
+    console.log(datos);
+}
 });

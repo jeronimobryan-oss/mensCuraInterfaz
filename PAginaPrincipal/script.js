@@ -81,9 +81,9 @@ const tabTemplates = {
             <div class="tab-input-group">
                 <label for="c-modal">Modalidad de interconexión</label>
                 <select id="c-modal">
-                    <option>🎥 Videollamada de alta definición</option>
-                    <option>💬 Chat directo de urgencia</option>
-                    <option>📞 Llamada de audio</option>
+                    <option>🎥 Videollamada</option>
+                    <option>💬 Chat directo </option>
+                    <option>📞 Presencial</option>
                 </select>
             </div>
             <div style="display:flex; gap:12px;">
@@ -197,7 +197,7 @@ const tabTemplates = {
                 <p>⏰ Recordatorio automático: 08:00 AM</p>
             </div>
             <div class="med-card">
-                <h4>Alprazolam — 0.25 mg (rescate)</h4>
+                <h4>Alprazolam — 0.25 mg </h4>
                 <p><strong>Uso:</strong> Solo en episodios de ansiedad aguda, máximo 1 diario.</p>
                 <p>⚠️ Uso bajo supervisión médica obligatoria.</p>
             </div>
@@ -416,8 +416,6 @@ const tabTemplates = {
                 <p><strong>Fecha de registro:</strong> 12 de enero de 2026</p>
                 <p><strong>Correo:</strong> bryan.pardo@correo.com</p>
                 <p><strong>Teléfono:</strong> 646-000-0000</p>
-                <p><strong>Plan:</strong> Mens Cura Plus</p>
-                <p><strong>Seguro médico:</strong> IMSS Activo</p>
                 <p><strong>Idioma preferido:</strong> Español (México)</p>
             </div>
             <button class="btn-submit-tab" onclick="cerrarPestana('Redirigiendo a edición de perfil...')">✏️ Editar perfil</button>
